@@ -1,29 +1,38 @@
-import { ApolloServer } from "apollo-server-express";
-import express from "express";
-import cookieParser from "cookie-parser";
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+
 import { schema } from "~generated/graphql/schema";
-import { appContext } from "~app/context";
-import { dataSources } from "./dataSources";
+import { AppContext, appContext } from "~app/context";
 import { root } from "./root";
 
-export const createApp = async () => {
-  const app = express();
+// export const createApp = async () => {
+//   const app = express();
+//
+//   app.use([cookieParser()]);
+//
+//   const corsOptions = {
+//     origin: "http://localhost:3000",
+//     credentials: true,
+//   };
+//
+//   const apollo = new ApolloServer({
+//     schema,
+//     context: appContext(root),
+//   });
+//
+//   await apollo.start(); // Add this line
+//   apollo.applyMiddleware({ app, cors: corsOptions });
+//
+//   return app;
+// };
 
-  app.use([cookieParser()]);
+const server = new ApolloServer<AppContext>({
+  schema,
+});
 
-  const corsOptions = {
-    origin: "http://localhost:3000",
-    credentials: true,
-  };
+const port = process.env.PORT || 4000;
 
-  const apollo = new ApolloServer({
-    schema,
-    dataSources,
-    context: appContext(root),
-  });
-
-  await apollo.start(); // Add this line
-  apollo.applyMiddleware({ app, cors: corsOptions });
-
-  return app;
-};
+startStandaloneServer<AppContext>(server, {
+  context: appContext(root),
+  listen: { port: 4000 },
+}).then(() => {});

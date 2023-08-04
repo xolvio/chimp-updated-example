@@ -1,10 +1,8 @@
-import express from "express";
-import { RootInterface } from "./root";
-import { dataSources } from "./dataSources";
+import { type IncomingMessage, type ServerResponse } from "http";
 
-export type GqlContext = AppContext & {
-  dataSources: ReturnType<typeof dataSources>;
-};
+import { RootInterface } from "./root";
+
+export type GqlContext = AppContext;
 
 export type AppContext = RootInterface & {
   headers: {
@@ -15,10 +13,10 @@ export type AppContext = RootInterface & {
 
 export const appContext =
   (root: RootInterface) =>
-  ({ req }: { req: express.Request }): AppContext => {
+  async ({ req }: { req: IncomingMessage }): Promise<AppContext> => {
     return {
       ...root,
       headers: req.headers,
-      jwt: req.cookies.jwt,
+      // jwt: req.cookies.jwt,
     };
   };
