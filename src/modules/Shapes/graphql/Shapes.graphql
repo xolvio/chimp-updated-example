@@ -1,24 +1,24 @@
 # Interface for a geometric shape with an ID, name, and area
 interface Shape {
-    id: ID!
-    name: String!
-    area: Float!
+  id: ID!
+  name: String!
+  area: Float!
 }
 
 # Implementing the Shape interface for a Circle
 type Circle implements Shape {
-    id: ID!
-    name: String!
-    area: Float! @computed
-    radius: Float!
+  id: ID!
+  name: String!
+  area: Float! @computed
+  radius: Float!
 }
 
 # Implementing the Shape interface for a Square
 type Square implements Shape {
-    id: ID!
-    name: String!
-    area: Float! @computed
-    sideLength: Float!
+  id: ID!
+  name: String!
+  area: Float! @computed
+  sideLength: Float!
 }
 
 # Union to represent either a Shape or a special unknown type
@@ -26,11 +26,11 @@ union ShapeOrUnknown = Circle | Square | UnknownShape
 
 # Special type to represent an unknown shape
 type UnknownShape {
-    description: String
+  description: String
 }
 
 # Root Query type to fetch shapes
 type Query {
-    getShapeById(id: ID!): ShapeOrUnknown
-    getShapes: [Shape!]!
+  getShapeById(id: ID!): ShapeOrUnknown
+  getShapes: [Shape!]!
 }

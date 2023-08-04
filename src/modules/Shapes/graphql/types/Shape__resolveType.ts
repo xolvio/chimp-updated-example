@@ -10,4 +10,5 @@ export const Shape__resolveType: ShapeResolvers["__resolveType"] = (
   if ("radius" in parent) {
     return "Circle";
   }
+  throw new Error("unknown type");
 };

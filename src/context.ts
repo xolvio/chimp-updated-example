@@ -8,7 +8,7 @@ export type GqlContext = AppContext & {
 
 export type AppContext = RootInterface & {
   headers: {
-    [key: string]: string | string[];
+    [key: string]: string | string[] | undefined;
   };
   jwt?: string;
 };

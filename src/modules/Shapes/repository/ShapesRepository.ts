@@ -48,11 +48,11 @@ export class ShapesRepository {
     });
   }
 
-  findOne(id: string): DbCircle | DbSquare | undefined {
+  findOne(id: string): DbCircle | DbSquare | null {
     return this.db.findOne({ id });
   }
 
-  findByName(name: string): DbCircle | DbSquare | undefined {
+  findByName(name: string): DbCircle | DbSquare | null {
     return this.db.findOne({ name });
   }
 
