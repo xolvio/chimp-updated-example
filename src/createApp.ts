@@ -1,14 +1,13 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import cors from "cors";
-import http from 'http';
-
+import http from "http";
 
 import { schema } from "~generated/graphql/schema";
 import { AppContext, appContext } from "~app/context";
 import { root } from "./root";
 import express from "express";
-import { json } from 'body-parser';
+import { json } from "body-parser";
 
 import { expressMiddleware } from "@apollo/server/express4";
 // export const createApp = async () => {
@@ -35,7 +34,6 @@ const apollo = new ApolloServer<AppContext>({
 apollo.start().then(async () => {
   const app = express();
 
-
   const httpServer = http.createServer(app);
 
   const corsOptions = {
@@ -44,7 +42,7 @@ apollo.start().then(async () => {
   };
 
   app.use(
-    '/graphql',
+    "/graphql",
     cors<cors.CorsRequest>(corsOptions),
     json(),
     // A named context function is required if you are not
@@ -54,7 +52,8 @@ apollo.start().then(async () => {
     }),
   );
 
-  await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve));
+  await new Promise<void>((resolve) =>
+    httpServer.listen({ port: 4000 }, resolve),
+  );
   console.log(`🚀 Server ready at http://localhost:4000/graphql`);
-
 });

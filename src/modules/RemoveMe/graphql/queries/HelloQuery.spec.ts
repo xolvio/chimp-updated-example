@@ -5,7 +5,7 @@
 // const testHello = (variables: QueryHelloArgs, context: GqlContext) =>
 //   HelloQuery({}, variables, context, null);
 
-// test("Hello", async () => {
+test("Hello", async () => {});
 //   const context = td.object<GqlContext>();
 
 //   const variables: QueryHelloArgs = { greeting: "Hello there!" };
