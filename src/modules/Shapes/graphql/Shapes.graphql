@@ -9,7 +9,7 @@ interface Shape {
 type Circle implements Shape {
     id: ID!
     name: String!
-    area: Float!
+    area: Float! @computed
     radius: Float!
 }
 
@@ -17,7 +17,7 @@ type Circle implements Shape {
 type Square implements Shape {
     id: ID!
     name: String!
-    area: Float!
+    area: Float! @computed
     sideLength: Float!
 }
 

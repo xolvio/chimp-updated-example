@@ -13,14 +13,12 @@ export type AppContext = RootInterface & {
   jwt?: string;
 };
 
-export const appContext = (root: RootInterface) => ({
-  req,
-}: {
-  req: express.Request;
-}): AppContext => {
-  return {
-    ...root,
-    headers: req.headers,
-    jwt: req.cookies.jwt,
+export const appContext =
+  (root: RootInterface) =>
+  ({ req }: { req: express.Request }): AppContext => {
+    return {
+      ...root,
+      headers: req.headers,
+      jwt: req.cookies.jwt,
+    };
   };
-};

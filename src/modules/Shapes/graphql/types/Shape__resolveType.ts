@@ -2,7 +2,12 @@ import { ShapeResolvers } from "~generated/graphql/types";
 
 export const Shape__resolveType: ShapeResolvers["__resolveType"] = (
   parent,
-  context
+  context,
 ) => {
-  throw new Error("Not implemented yet");
+  if ("sideLength" in parent) {
+    return "Square";
+  }
+  if ("radius" in parent) {
+    return "Circle";
+  }
 };
