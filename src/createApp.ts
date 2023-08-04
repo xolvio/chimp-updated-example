@@ -6,7 +6,7 @@ import { appContext } from "~app/context";
 import { dataSources } from "./dataSources";
 import { root } from "./root";
 
-export const createApp = () => {
+export const createApp = async () => {
   const app = express();
 
   app.use([cookieParser()]);
@@ -22,6 +22,7 @@ export const createApp = () => {
     context: appContext(root),
   });
 
+  await apollo.start(); // Add this line
   apollo.applyMiddleware({ app, cors: corsOptions });
 
   return app;

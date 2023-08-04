@@ -1,0 +1,13 @@
+diff --git a/node_modules/chimp/lib/commands/generate.js b/node_modules/chimp/lib/commands/generate.js
+index 120045a..16c7828 100644
+--- a/node_modules/chimp/lib/commands/generate.js
++++ b/node_modules/chimp/lib/commands/generate.js
+@@ -34,7 +34,7 @@ const fixGenerated = async (projectMainPath) => {
+     await (0, execQuietly_1.execQuietly)(`node ${fixGeneratedPath}`, { cwd: projectMainPath });
+ };
+ const prettifyGenerated = async (projectMainPath, modulesPath = 'src') => {
+-    await (0, execQuietly_1.execQuietly)(`npx prettier --write "${modulesPath}/**/*.ts" "generated/**/*.ts" --loglevel error`, {
++    await (0, execQuietly_1.execQuietly)(`npx prettier --write "${modulesPath}/**/*.ts" "generated/**/*.ts" --log-level error`, {
+         cwd: projectMainPath,
+     });
+ };
